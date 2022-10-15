@@ -495,6 +495,7 @@ body.lock {
       -ms-flex: 0 0 160px;
           flex: 0 0 160px;
   padding-right: 35px;
+  padding-left: 6px;
 }
 
 .home-item__img img {
