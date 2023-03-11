@@ -550,9 +550,7 @@ body.lock {
   .home__item {
     margin-bottom: 40px;
   }
-  .home__text p:nth-child(2) {
-    display: none;
-  }
+ 
   .home__title.title {
     line-height: 50px;
     margin-bottom: 20px;
