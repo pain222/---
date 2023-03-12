@@ -1,86 +1,37 @@
-const sliderBody = document.querySelector('.slider__body')
-const leftArrow = document.querySelector('.slider__arrow_left')  
-const rigthArrow = document.querySelector('.slider__arrow_rigth')
-const sliderBtn = document.querySelector('.slider__btn')
-const sliderItems = document.querySelectorAll('.slider__item')
-const dots = document.querySelectorAll('.dot')
-const width = screen.width
+const teamsSlider = new Swiper('.teams-slider', {
+   slidesPerView: 1.05,
+   spaceBetween: 18,
+   slidesPerGroup: 1,
+   simulateTouch: false,
+   initialSlide: 1, /* Стратовый слайдер сам настроишь */
 
-let position = width > 991.98 ? -400 : -1300
-let dotIndex = 4
-let itemInxde = 13
-let flag = false 
+   navigation: {
+      nextEl: '.slider__arrow_rigth',
+      prevEl: '.slider__arrow_left',  
+   },
 
-const nextSlide = () => {
-   if ( position > (-(dots.length - 1) * 100) && width > 991.98){
-      position -= 100
-      dotIndex++
-   } else if (position > (-(sliderItems.length - 1) * 100) && width < 991.98){
-      position -= 100
-      itemInxde++
-   }
-   sliderBody.style.left = position + '%'
-   activeSlide(dotIndex)
-}
+   breakpoints: {
+      1180: {
+         slidesPerGroup: 3,
+         slidesPerView: 3,
+         spaceBetween: 16,
+      },
 
-const pervSlide = () => {
-   if (position !== 0 && width > 991.98) {
-      position += 100
-      dotIndex--
-   } else if (position !== 0 && width < 991.98){
-      position += 100
-      itemInxde--
-   }
-   sliderBody.style.left = position + '%'
-   activeSlide(dotIndex)
-}
+      992: {
+         slidesPerGroup: 3,
+         slidesPerView: 3,
+         spaceBetween: 16,
+      },
 
-const activeSlide = (index) => {
-   for(let dot of dots){
-      dot.classList.remove('active')
-   }
-   
-   dots[index].classList.add('active')
-}
+      776: { 
+         slidesPerGroup: 2,
+         slidesPerView: 2,
+         spaceBetween: 14,
+      },
 
-rigthArrow.addEventListener('click', nextSlide)
-leftArrow.addEventListener('click', pervSlide)
-
-if (width > 991.98) {
-   dots.forEach((dot, index) => {
-      dot.addEventListener('click', () => {
-         position = -100 * index
-         sliderBody.style.left = position + '%'
-         dotIndex = index
-         activeSlide(dotIndex)
-      })
-   })
-}
-
-sliderBtn.addEventListener('click', () => {
-   sliderBtn.classList.toggle('active')
-})
-
-setInterval(() => {
-   if (width > 991.98){
-      if (dotIndex === 8){
-         flag = true
-      } else if (dotIndex === 0){
-         flag = false
-      }
-   }
-   if (width < 991.98){
-      if (itemInxde === 26){
-         flag = true
-      } else if (itemInxde === 0){
-         flag = false
-      }
-   }
-
-   if ((flag) && (sliderBtn.classList[1] === 'active')){
-      pervSlide()
-   } else if ((!flag) && (sliderBtn.classList[1] === 'active')){
-      nextSlide()
-   }
-
-}, 4500)
+      522: { 
+         slidesPerView: 1.6,
+      },
+  }
+});
+ 
